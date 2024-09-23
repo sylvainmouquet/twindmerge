@@ -1,15 +1,26 @@
 {
-  "name": "tailwindcss_fusion",
+  "name": "twmerge",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Merge the list of tailwind classes",
+  "author": "Sylvain Mouquet <sylvain.mouquet@gmail.com>",
+  "keywords": ["tailwind", "tailwindcss", "merge", "class", "classes", "typescript"],
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "deploy": "npm publish",
+    "test": "vitest twmerge.test.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "dependencies": {
-    "clsx": "^2.1.1"
+    "clsx": "^2.1.1",
+    "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.1"
   }
 }
