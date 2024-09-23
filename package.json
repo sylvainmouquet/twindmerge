@@ -3,12 +3,20 @@
   "version": "1.0.0",
   "description": "Merge the list of tailwind classes",
   "author": "Sylvain Mouquet <sylvain.mouquet@gmail.com>",
-  "keywords": ["tailwind", "tailwindcss", "merge", "class", "classes", "typescript"],
+  "keywords": [
+    "tailwind",
+    "tailwindcss",
+    "merge",
+    "class",
+    "classes",
+    "typescript"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "tsc",
     "deploy": "npm publish",
-    "test": "vitest twmerge.test.ts"
+    "test": "vitest twmerge.test.ts",
+    "lint": "eslint . --ext .ts"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +28,10 @@
     "validator": "^13.12.0"
   },
   "devDependencies": {
-    "typescript": "^5.6.2",
+    "@typescript-eslint/eslint-plugin": "^8.7.0",
+    "@typescript-eslint/parser": "^8.7.0",
+    "eslint": "^8.0.0",
+    "typescript": "5.5.4",
     "vitest": "^2.1.1"
   }
 }
