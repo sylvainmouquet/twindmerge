@@ -22,12 +22,11 @@ merge(clsx("text-gray-100", "text-gray-50"))
 
 ## Description
 
-When we use tailwindcss it's great to be able to override a current configuration.
-The usage of merge is very helpfull to 
+TWMerge provides a powerful solution for managing Tailwind CSS classes in dynamic environments. 
+By keeping only the latest conflicting class, TWMerge ensures that your styles are applied as intended, reducing unexpected visual outcomes and improving the maintainability of your codebase.
 
 
 ## Installation
-Provide instructions on how to install your project. Include any dependencies and steps required to get the project up and running.
 
 ```bash
 # Install the dependency
