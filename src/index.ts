@@ -1,1 +1,1 @@
-export {merge} from './twmerge'
+export {merge} from './twindmerge'

@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import {merge} from "./twmerge";
+import {merge} from "./twindmerge";
 
 test("merge the tailwind classes", () => {
   // manage groups

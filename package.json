@@ -9,13 +9,15 @@
     "merge",
     "class",
     "classes",
-    "typescript"
+    "typescript",
+    "twindmerge",
+    "clsx"
   ],
   "license": "MIT",
   "scripts": {
     "build": "tsc",
     "deploy": "npm publish",
-    "test": "vitest twmerge.test.ts",
+    "test": "vitest twindmerge.test.ts",
     "lint": "eslint . --ext .ts"
   },
   "main": "dist/index.js",

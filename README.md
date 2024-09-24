@@ -1,8 +1,10 @@
-# TWMerge
+# TWindMerge
 
-TWMerge is a utility for merging Tailwind CSS classes, keeping only the latest class when conflicts occur.
+TWindMerge is a utility for merging Tailwind CSS classes, keeping only the latest class when conflicts occur.
 
 ### Demonstration:
+
+
 ```typescript
 merge("text-gray-100 text-gray-50")
     -> "text-gray-50"
@@ -22,7 +24,7 @@ merge(clsx("text-gray-100", "text-gray-50"))
 
 ## Description
 
-TWMerge provides a powerful solution for managing Tailwind CSS classes in dynamic environments. 
+TWindMerge provides a powerful solution for managing Tailwind CSS classes in dynamic environments. 
 By keeping only the latest conflicting class, TWMerge ensures that your styles are applied as intended, reducing unexpected visual outcomes and improving the maintainability of your codebase.
 
 
@@ -30,7 +32,7 @@ By keeping only the latest conflicting class, TWMerge ensures that your styles a
 
 ```bash
 # Install the dependency
-npm install --save twmerge
+npm install --save twindmerge
 
 ```
 
@@ -38,14 +40,14 @@ npm install --save twmerge
 
 ```bash
 # Import and call the merge function
-import {merge} from 'twmerge'
+import {merge} from 'twindmerge'
 <div className={merge("bg-red-200 bg-green-200")}></div>
 ```
 
 
 ## License
 
-TWMerge is released under the MIT License. See the [LICENSE](LICENSE) file for more details.
+TWindMerge is released under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 ## Contact
 
