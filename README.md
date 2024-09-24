@@ -14,7 +14,7 @@ merge(clsx("text-gray-100", "text-gray-50"))
 
 ## Table of Contents
 
-- [TWMerge](#twmerge)
+- [TWindMerge](#TWindMerge)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [Installation](#installation)
@@ -25,7 +25,7 @@ merge(clsx("text-gray-100", "text-gray-50"))
 ## Description
 
 TWindMerge provides a powerful solution for managing Tailwind CSS classes in dynamic environments. 
-By keeping only the latest conflicting class, TWMerge ensures that your styles are applied as intended, reducing unexpected visual outcomes and improving the maintainability of your codebase.
+By keeping only the latest conflicting class, TWindMerge ensures that your styles are applied as intended, reducing unexpected visual outcomes and improving the maintainability of your codebase.
 
 
 ## Installation
@@ -51,5 +51,5 @@ TWindMerge is released under the MIT License. See the [LICENSE](LICENSE) file fo
 
 ## Contact
 
-For questions, suggestions, or issues related to TWMerge, please open an issue on the GitHub repository.
+For questions, suggestions, or issues related to TWindMerge, please open an issue on the GitHub repository.
 
