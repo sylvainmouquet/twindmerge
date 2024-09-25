@@ -40,13 +40,22 @@ jobs:
         EOF
     - name: Create Cypress config file
       run: |
-        echo "module.exports = {}" > cypress.config.js
+        echo "const { defineConfig } = require('cypress')
+
+        module.exports = defineConfig({
+          e2e: {
+            setupNodeEvents(on, config) {
+              // implement node event listeners here
+            },
+            baseUrl: 'http://localhost:8080',
+          },
+        })" > cypress.config.js
     - name: Test in browser
       uses: cypress-io/github-action@v6
       with:
         build: npm run build
         start: npx http-server dist
-        command: npx cypress run --spec cypress/e2e/browser-test.cy.js
+        command: npx cypress run --e2e
     - name: Upload Cypress screenshots
       uses: actions/upload-artifact@v3
       if: failure()
