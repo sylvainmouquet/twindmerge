@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twindmerge Demo</title>
+    <script src="twindmerge.js"></script>
+</head>
+<body>
+    <h1>Twindmerge Demo</h1>
+    <div id="result"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const { merge } = twindmerge;
+            const result = merge('text-red-500', 'text-blue-600', 'p-4', 'p-2');
+            document.getElementById('result').textContent = `Merged classes: ${result}`;
+        });
+    </script>
+</body>
+</html>

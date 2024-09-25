@@ -34,6 +34,13 @@ deploy:
 test:
 	npm run test
 
+# End-to-end test command
+.PHONY: test\:e2e
+test\:e2e:
+	npm run build
+	cp index.html dist
+	npx http-server dist & npx cypress run --e2e
+
 # Lint command
 .PHONY: lint
 lint:
