@@ -12,8 +12,12 @@ install:
 # Update command
 .PHONY: update
 update:
-	npm outdated
 	npm update
+
+# Update command
+.PHONY: check\:deps
+check\:deps:
+	npm outdated
 
 # Build command
 .PHONY: build
