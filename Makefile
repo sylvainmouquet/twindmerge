@@ -9,6 +9,11 @@ wip:
 .PHONY: install
 install:
 	npm install
+# Update command
+.PHONY: update
+update:
+	npm outdated
+	npm update
 
 # Build command
 .PHONY: build

@@ -27,7 +27,7 @@
     "build": "tsc",
     "deploy": "npm publish",
     "test": "vitest run",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint ."
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -42,9 +42,10 @@
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^8.0.0",
+    "eslint": "^9.11.1",
     "happy-dom": "^15.7.4",
-    "typescript": "^5.5.4",
+    "typescript": "^5.5",
+    "typescript-eslint": "^8.7.0",
     "vitest": "^2.1.1"
   }
 }
