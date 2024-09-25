@@ -22,7 +22,6 @@
     "typescript"
   ],
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "build": "tsc",
     "deploy": "npm publish",
