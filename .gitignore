@@ -17,3 +17,11 @@ node_modules/
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# Cypress
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# Temporary project directory
+my-project/

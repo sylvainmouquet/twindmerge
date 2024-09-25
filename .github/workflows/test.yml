@@ -2,22 +2,51 @@ name: Run Tests
 
 on:
   push:
-    branches:
-      - '*'
+    branches: ['*']
   pull_request:
-    branches:
-      - '*'
+    branches: ['*']
   workflow_dispatch:
 
 jobs:
-  test:
+  unit-tests:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Use Node.js
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-    - run: rm package-lock.json
-    - run: npm install
-    - run: npm test
+    - name: Install dependencies
+      run: |
+        rm package-lock.json
+        npm install  
+    - name: Run unit tests
+      run: npm test
+  
+  tests-e2e:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        testtype: [e2e-local, e2e-remote]
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - name: Install dependencies
+      run: |
+        rm package-lock.json
+        npm install 
+    - name: Build project
+      run: npm run build
+    - name: Run browser tests
+      uses: cypress-io/github-action@v6
+      with:
+        command: make test:${{ matrix.testtype }}
+    - name: Upload Cypress screenshots
+      uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: cypress-screenshots-${{ matrix.testtype }}
+        path: cypress/screenshots
