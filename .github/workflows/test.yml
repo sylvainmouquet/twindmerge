@@ -38,6 +38,9 @@ jobs:
           });
         });
         EOF
+    - name: Create Cypress config file
+      run: |
+        echo "module.exports = {}" > cypress.config.js
     - name: Test in browser
       uses: cypress-io/github-action@v6
       with:
