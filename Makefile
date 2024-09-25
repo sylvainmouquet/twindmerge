@@ -9,6 +9,15 @@ wip:
 .PHONY: install
 install:
 	npm install
+# Update command
+.PHONY: update
+update:
+	npm update
+
+# Update command
+.PHONY: check\:deps
+check\:deps:
+	npm outdated
 
 # Build command
 .PHONY: build
