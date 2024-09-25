@@ -19,16 +19,16 @@ jobs:
     - name: Install dependencies
       run: |
         rm package-lock.json
-        npm install
-    
+        npm install  
+    - name: Run unit tests
+      run: npm test
+  
   tests-e2e:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         testtype: [e2e-local, e2e-remote]
     steps:
-    - name: Run unit tests
-      run: npm test
     - name: Build project
       run: npm run build
     - name: Run browser tests
