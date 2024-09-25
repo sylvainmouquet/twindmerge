@@ -3,21 +3,30 @@
   "version": "1.0.0",
   "description": "Merge the list of tailwind classes",
   "author": "Sylvain Mouquet <sylvain.mouquet@gmail.com>",
+  "homepage": "https://github.com/sylvainmouquet/twindmerge",
+  "bugs": {
+    "url": "https://github.com/sylvainmouquet/twindmerge/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sylvainmouquet/twindmerge.git"
+  },
   "keywords": [
-    "tailwind",
-    "tailwindcss",
-    "merge",
     "class",
     "classes",
-    "typescript",
+    "clsx",
+    "merge",
+    "tailwind",
+    "tailwindcss",
     "twindmerge",
-    "clsx"
+    "typescript"
   ],
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "deploy": "npm publish",
-    "test": "vitest twindmerge.test.ts",
+    "test": "vitest run",
     "lint": "eslint . --ext .ts"
   },
   "main": "dist/index.js",
@@ -26,13 +35,15 @@
     "/dist"
   ],
   "dependencies": {
-    "clsx": "^2.1.1",
-    "validator": "^13.12.0"
+    "clsx": "^2.1.1"
   },
   "devDependencies": {
+    "@testing-library/react": "^16.0.1",
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
+    "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^8.0.0",
+    "happy-dom": "^15.7.4",
     "typescript": "^5.5.4",
     "vitest": "^2.1.1"
   }

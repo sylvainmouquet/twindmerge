@@ -21,7 +21,7 @@ function getKeyAndValue(word: string): [string, string] {
   }
 }
 
-export function merge(classNames: string | string[]): string {
+export function merge(...classNames: (string | string[])[]): string {
   const classNamesString = Array.isArray(classNames)
     ? clsx(classNames)
     : classNames;
