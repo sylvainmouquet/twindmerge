@@ -1,5 +1,6 @@
-import { expect, test } from "vitest";
 import {merge, charIsNumeric} from "./twindmerge";
+import {clsx} from "clsx";
+import { expect, test } from 'vitest';
 
 test("check if input is a numeric", () => {
     expect(charIsNumeric("0")).toBe(true);
@@ -25,8 +26,13 @@ test("merge the tailwind classes", () => {
   ).toBe("group-[.hover]:opacity-100 group-[.selected]:opacity-100");
 
 
+  expect(merge('bg-blue-500 text-white p-2 rounded', 'bg-red-500')).toBe("bg-red-500 text-white p-2 rounded");
+
   // input an array
   expect(merge(["ml-1", "m-2"])).toBe("m-2");
+
+  // input is clsx
+  expect(merge(clsx("ml-1", "ml-2"))).toBe("ml-2");
 
   // input a string
   expect(merge("ml-1 m-2")).toBe("m-2");
