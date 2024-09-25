@@ -6,10 +6,18 @@ TWindMerge is a utility for merging Tailwind CSS classes, keeping only the lates
 
 
 ```typescript
+// merges string input
 merge("text-gray-100 text-gray-50")
     -> "text-gray-50"
+// merges clsx input
 merge(clsx("text-gray-100", "text-gray-50")) 
     -> "text-gray-50"
+// merges multiple arguments
+merge(['bg-blue-500', 'bg-red-500'])
+    -> "bg-red-500"
+// merges array input
+merge('bg-blue-500', 'bg-red-500')
+    -> "bg-red-500"
 ```
 
 ## Table of Contents
@@ -52,8 +60,7 @@ function ExampleComponent() {
     </div>
   );
 }
-// Example usage with clsx
-import clsx from 'clsx';
+// Example usage with array
 function ExampleComponentWithClsx() {
   return (
     <div className={merge(["text-gray-100", "text-gray-50"])}>
