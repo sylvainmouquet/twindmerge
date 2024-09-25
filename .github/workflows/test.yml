@@ -29,6 +29,11 @@ jobs:
       matrix:
         testtype: [e2e-local, e2e-remote]
     steps:
+    - uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
     - name: Build project
       run: npm run build
     - name: Run browser tests
