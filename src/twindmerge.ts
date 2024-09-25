@@ -1,5 +1,8 @@
-import { isNumeric } from "validator";
 import {clsx} from "clsx";
+
+export function charIsNumeric(char: string): boolean {
+  return char[0] >= '0' && char[0] <= '9'
+}
 
 function getKeyAndValue(word: string): [string, string] {
   const splitted = word.split("-");
@@ -8,7 +11,8 @@ function getKeyAndValue(word: string): [string, string] {
   if (splitted[0] === "group") {
     // ex: ["group[.hover]:opacity", "100"]
     return [splitted[0] + "-" + splitted[1], word];
-  } else if (isNumeric(latestChar) && Number(latestChar) > 20) {
+
+  } else if (charIsNumeric(latestChar) && Number(latestChar) > 20) {
     return ["color:" + splitted.slice(0, -2).join("-"), word];
   } else if (latestChar.startsWith("[#")) {
     return ["color:" + splitted.slice(0, -1).join("-"), word];
