@@ -21,3 +21,32 @@ jobs:
     - run: rm package-lock.json
     - run: npm install
     - run: npm test
+    - name: Build project
+      run: npm run build
+    - name: Create Cypress test file
+      run: |
+        mkdir -p cypress/e2e
+        cat << EOF > cypress/e2e/browser-test.cy.js
+        describe('twindmerge browser test', () => {
+          it('should merge classes correctly', () => {
+            cy.visit('http://localhost:8080');
+            cy.window().then((win) => {
+              const { merge } = win.twindmerge;
+              const result = merge('text-red-500', 'text-blue-600', 'p-4', 'p-2');
+              expect(result).to.equal('text-blue-600 p-2');
+            });
+          });
+        });
+        EOF
+    - name: Test in browser
+      uses: cypress-io/github-action@v6
+      with:
+        build: npm run build
+        start: npx http-server dist
+        command: npx cypress run --spec cypress/e2e/browser-test.cy.js
+    - name: Upload Cypress screenshots
+      uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
