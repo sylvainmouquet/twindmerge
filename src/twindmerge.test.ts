@@ -32,6 +32,9 @@ test("merge the tailwind classes", () => {
   expect(merge("ml-1 m-2")).toBe("m-2");
   expect(merge("m-1 ml-2")).toBe("m-1 ml-2");
 
+  expect(merge("rounded-layout rounded-none")).toBe("rounded-none");
+  expect(merge("!rounded-layout !rounded-none")).toBe("!rounded-none");
+
   expect(merge("p-1")).toBe("p-1");
   expect(merge("p-1 p-10")).toBe("p-10");
   expect(merge("pl-1 p-1")).toBe("p-1");
