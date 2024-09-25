@@ -1,5 +1,22 @@
 import { expect, test } from "vitest";
-import {merge} from "./twindmerge";
+import {merge, charIsNumeric} from "./twindmerge";
+
+test("check if input is a numeric", () => {
+    expect(charIsNumeric("0")).toBe(true);
+    expect(charIsNumeric("1")).toBe(true);
+    expect(charIsNumeric("2")).toBe(true);
+    expect(charIsNumeric("3")).toBe(true);
+    expect(charIsNumeric("4")).toBe(true);
+    expect(charIsNumeric("5")).toBe(true);
+    expect(charIsNumeric("6")).toBe(true);
+    expect(charIsNumeric("7")).toBe(true);
+    expect(charIsNumeric("8")).toBe(true);
+    expect(charIsNumeric("9")).toBe(true);
+    
+    expect(charIsNumeric("")).toBe(false);
+    expect(charIsNumeric("a")).toBe(false);
+    expect(charIsNumeric("z")).toBe(false);
+})
 
 test("merge the tailwind classes", () => {
   // manage groups
