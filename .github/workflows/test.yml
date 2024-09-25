@@ -8,11 +8,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  unit-tests:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        testtype: [e2e-local, e2e-remote]
     steps:
     - uses: actions/checkout@v4
     - name: Setup Node.js
@@ -23,6 +20,13 @@ jobs:
       run: |
         rm package-lock.json
         npm install
+    
+  tests-e2e:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        testtype: [e2e-local, e2e-remote]
+    steps:
     - name: Run unit tests
       run: npm test
     - name: Build project
