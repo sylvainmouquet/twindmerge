@@ -20,6 +20,13 @@ test("check if input is a numeric", () => {
 })
 
 test("merge the tailwind classes", () => {
+    // readme tests
+    expect(merge("text-gray-100 text-gray-50")).toBe("text-gray-50");
+    expect(merge(clsx("text-gray-100", "text-gray-50"))).toBe("text-gray-50");
+    expect(merge('bg-blue-500', 'bg-red-500')).toBe("bg-red-500");
+    expect(merge(['bg-blue-500', 'bg-red-500'])).toBe("bg-red-500");
+    
+
   // manage groups
   expect(
     merge("group-[.hover]:opacity-100 group-[.selected]:opacity-100"),

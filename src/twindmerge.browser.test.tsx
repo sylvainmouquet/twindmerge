@@ -1,21 +1,28 @@
 import { expect, test } from "vitest";
-import { Window } from 'happy-dom';
 import { merge } from './twindmerge';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
+import {clsx} from "clsx";
 
 
-test('example1', () => {
-  const TestComponent = () => (
-    <div className="container">
-      <button className={merge('bg-blue-500 text-white p-2 rounded', 'bg-red-500')}>
-        Test Button
-      </button>
-    </div>
-  );
+describe('browser tests', () => {
+  const renderComponent = (className: string) => {
+    function ExampleComponent() {
+      return <button className={className}></button>;
+    }
+    render(<ExampleComponent />);
+    return screen.getByRole('button');
+  };
 
-  render(<TestComponent />);
+  const testMerge = (testName: string, ...input: Parameters<typeof merge>) => {
+    test(testName, () => {
+      const button = renderComponent(merge(...input));
+      expect(button.className).toBe(merge(...input));
+    });
+  };
 
-  const button = screen.getByRole('button');
-  expect(button.className).toBe('bg-red-500 text-white p-2 rounded');
+  testMerge('merges string input', "text-gray-100 text-gray-50");
+  testMerge('merges clsx input', clsx("text-gray-100", "text-gray-50"));
+  testMerge('merges array input', ['bg-blue-500', 'bg-red-500']);
+  testMerge('merges multiple arguments', 'bg-blue-500', 'bg-red-500');
 });
