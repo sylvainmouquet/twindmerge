@@ -12,6 +12,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test-type: [test:e2e-local, test:e2e-remote]
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js
@@ -26,10 +29,10 @@ jobs:
     - name: Test in browser
       uses: cypress-io/github-action@v6
       with:
-        command: make test:e2e
+        command: make ${{ matrix.test-type }}
     - name: Upload Cypress screenshots
       uses: actions/upload-artifact@v3
       if: failure()
       with:
-        name: cypress-screenshots
+        name: cypress-screenshots-${{ matrix.test-type }}
         path: cypress/screenshots

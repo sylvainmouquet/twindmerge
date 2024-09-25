@@ -22,3 +22,6 @@ Thumbs.db
 cypress/videos/
 cypress/screenshots/
 cypress/downloads/
+
+# Temporary project directory
+my-project/
