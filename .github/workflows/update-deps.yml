@@ -20,13 +20,26 @@ jobs:
       - name: Install dependencies
         run: make install
 
+      - name: Save check dependencies output (before)
+        id: check_deps_before
+        run: |
+          output=$(make check:deps)
+          echo "::set-output name=deps_output::$output"
+
       - name: Run make update
         run: make update
+
+      - name: Run make check dependencies (after)
+        id: check_deps_after
+        run: |
+          output=$(make check:deps)
+          echo "::set-output name=deps_output::$output"
 
       - name: Create or Update Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
           title: 'Update package-lock.json'
-          body: 'Automated update of package-lock.json'
+          body: 'Automated update of package-lock.json\n\nBefore Update:\n${{ steps.check_deps_before.outputs.deps_output }}\n\nAfter Update:\n${{ steps.check_deps_after.outputs.deps_output }}'
           base: main
           branch: update-npm-dependencies
+          
