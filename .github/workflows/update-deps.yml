@@ -5,17 +5,21 @@ on:
     - cron: '0 7 * * *'  # Runs every day at 7:00 AM
   workflow_dispatch:  # Allows manual triggering of the workflow
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   update-deps:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '20'
 
       - name: Install dependencies
         run: make install
@@ -23,7 +27,8 @@ jobs:
       - name: Save check dependencies output (before)
         id: check_deps_before
         run: |
-          before=$(make check:deps || true)
+          before=$(make check:deps) || true
+          echo "{before}={before}"
           echo "{before}={before}" >> $GITHUB_ENV
 
       - name: Run make update
@@ -32,14 +37,18 @@ jobs:
       - name: Run make check dependencies (after)
         id: check_deps_after
         run: |
-          after=$(make check:deps || true)
+          after=$(make check:deps) || true
+          echo "{after}={after}"
           echo "{after}={after}" >> $GITHUB_ENV
 
       - name: Create or Update Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
           title: 'chore(deps): update npm dependencies'
-          body: 'Automated update of package-lock.json\n\nBefore Update:\n${{ env.before }}\n\nAfter Update:\n${{ env.after }}'
+          body: |
+            'Automated update of package-lock.json
+            Before Update: ${{ env.before }}
+            After Update: ${{ env.after }}'
           base: main
           branch: update-npm-dependencies
           
