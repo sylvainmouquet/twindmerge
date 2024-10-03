@@ -23,7 +23,7 @@ jobs:
       - name: Save check dependencies output (before)
         id: check_deps_before
         run: |
-          before=$(make check:deps)
+          before=$(make check:deps || true)
           run: echo "{before}={before}" >> $GITHUB_ENV
 
       - name: Run make update
@@ -32,7 +32,7 @@ jobs:
       - name: Run make check dependencies (after)
         id: check_deps_after
         run: |
-          after=$(make check:deps)
+          after=$(make check:deps || true)
           run: echo "{after}={after}" >> $GITHUB_ENV
 
       - name: Create or Update Pull Request
