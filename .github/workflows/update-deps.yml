@@ -55,7 +55,9 @@ jobs:
           body: |
             Automated update of package-lock.json
             
-
+            - Before Update: $before
+            
+            - After Update: $after
           base: main
           branch: update-npm-dependencies
           
