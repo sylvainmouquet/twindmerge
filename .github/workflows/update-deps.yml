@@ -26,10 +26,11 @@ jobs:
       - name: Check for changes in package-lock.json
         id: check-for-changes
         run: |
-          git diff --exit-code package-lock.json
+          changes=$(git diff --exit-code package-lock.json; echo $?)
+          echo "changes=$changes" >> $GITHUB_ENV
           
       - name: Create or Update Pull Request
-        if: steps.check-for-changes.outcome == 'failure'
+        if: env.changes == '1'
         uses: peter-evans/create-pull-request@v3
         with:
           title: 'Update package-lock.json'
