@@ -30,7 +30,9 @@ jobs:
           before=$(make check:deps) || true
           echo "before=${before}"
 
-          echo ${after} >> report.txt
+          echo "before<<EOF" >> $GITHUB_ENV
+          echo "$before" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
 
       - name: Run make update
@@ -42,12 +44,18 @@ jobs:
           after=$(make check:deps) || true
           echo "after=${after}"
 
-          echo ${after} >> new-report.txt
+          echo "after<<EOF" >> $GITHUB_ENV
+          echo "$after" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Create or Update Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
           title: 'chore(deps): update npm dependencies'
-          body: Automated update of package-lock.json
+          body: |
+            Automated update of package-lock.json
+            
+
+          base: main
           branch: update-npm-dependencies
           
