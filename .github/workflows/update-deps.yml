@@ -56,10 +56,10 @@ jobs:
             Automated update of package-lock.json
             
             **Before:** 
-            ${BEFORE}
+            ${{env.BEFORE}}
             
             **After:**
-            ${AFTER}
+            ${{env.AFTER}}
           base: main
           branch: update-npm-dependencies
           
