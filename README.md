@@ -14,11 +14,11 @@ merge("text-gray-100 text-gray-50")
 merge(clsx("text-gray-100", "text-gray-50")) 
     -> "text-gray-50"
 
-// merges multiple arguments
+// merges array input
 merge(['bg-blue-500', 'bg-red-500'])
     -> "bg-red-500"
 
-// merges array input
+// merges multiple arguments
 merge('bg-blue-500', 'bg-red-500')
     -> "bg-red-500"
 ```
