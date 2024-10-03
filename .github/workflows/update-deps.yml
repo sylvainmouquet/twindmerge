@@ -38,7 +38,7 @@ jobs:
       - name: Create or Update Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          title: 'Update package-lock.json'
+          title: 'chore(deps): update npm dependencies'
           body: 'Automated update of package-lock.json\n\nBefore Update:\n${{ steps.check_deps_before.outputs.deps_output }}\n\nAfter Update:\n${{ steps.check_deps_after.outputs.deps_output }}'
           base: main
           branch: update-npm-dependencies
