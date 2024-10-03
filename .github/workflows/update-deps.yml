@@ -27,11 +27,11 @@ jobs:
       - name: Save check dependencies output (before)
         id: check_deps_before
         run: |
-          before=$(make check:deps) || true
-          echo "before=${before}"
+          BEFORE=$(make check:deps) || true
+          echo "BEFORE=${BEFORE}"
 
-          echo "before<<EOF" >> $GITHUB_ENV
-          echo "$before" >> $GITHUB_ENV
+          echo "BEFORE<<EOF" >> $GITHUB_ENV
+          echo "$BEFORE" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
 
@@ -42,10 +42,10 @@ jobs:
         id: check_deps_after
         run: |
           after=$(make check:deps) || true
-          echo "after=${after}"
+          echo "AFTER=${AFTER}"
 
-          echo "after<<EOF" >> $GITHUB_ENV
-          echo "$after" >> $GITHUB_ENV
+          echo "AFTER<<EOF" >> $GITHUB_ENV
+          echo "$AFTER" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
       - name: Create or Update Pull Request
@@ -55,9 +55,11 @@ jobs:
           body: |
             Automated update of package-lock.json
             
-            - Before Update: $before
+            **Before:** 
+            ${BEFORE}
             
-            - After Update: $after
+            **After:**
+            ${AFTER}
           base: main
           branch: update-npm-dependencies
           
