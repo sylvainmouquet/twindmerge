@@ -1,0 +1,38 @@
+name: Update Dependencies
+
+on:
+  schedule:
+    - cron: '0 7 * * *'  # Runs every day at 7:00 AM
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  update-deps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: make install
+
+      - name: Run make update
+        run: make update
+
+      - name: Check for changes in package-lock.json
+        run: |
+          git diff --exit-code package-lock.json || echo "package-lock.json has changed"
+
+      - name: Create or Update Pull Request
+        if: success() && steps.check-for-changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v3
+        with:
+          title: 'Update package-lock.json'
+          body: 'Automated update of package-lock.json'
+          base: main
+          branch: update-npm-dependencies
+          update: 'true'
