@@ -28,8 +28,8 @@ jobs:
         id: check_deps_before
         run: |
           before=$(make check:deps) || true
-          echo "{before}={before}"
-          echo "{before}={before}" >> $GITHUB_ENV
+          echo "before=${before}"
+          echo "before=${before}" >> $GITHUB_ENV
 
       - name: Run make update
         run: make update
@@ -38,8 +38,8 @@ jobs:
         id: check_deps_after
         run: |
           after=$(make check:deps) || true
-          echo "{after}={after}"
-          echo "{after}={after}" >> $GITHUB_ENV
+          echo "after=${after}"
+          echo "after=${after}" >> $GITHUB_ENV
 
       - name: Create or Update Pull Request
         uses: peter-evans/create-pull-request@v7
