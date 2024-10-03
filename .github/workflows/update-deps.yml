@@ -23,8 +23,8 @@ jobs:
       - name: Save check dependencies output (before)
         id: check_deps_before
         run: |
-          output=$(make check:deps)
-          echo "::set-output name=deps_output::$output"
+          before=$(make check:deps)
+          run: echo "{before}={before}" >> $GITHUB_ENV
 
       - name: Run make update
         run: make update
@@ -32,14 +32,14 @@ jobs:
       - name: Run make check dependencies (after)
         id: check_deps_after
         run: |
-          output=$(make check:deps)
-          echo "::set-output name=deps_output::$output"
+          after=$(make check:deps)
+          run: echo "{after}={after}" >> $GITHUB_ENV
 
       - name: Create or Update Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
           title: 'chore(deps): update npm dependencies'
-          body: 'Automated update of package-lock.json\n\nBefore Update:\n${{ steps.check_deps_before.outputs.deps_output }}\n\nAfter Update:\n${{ steps.check_deps_after.outputs.deps_output }}'
+          body: 'Automated update of package-lock.json\n\nBefore Update:\n${{ env.before }}\n\nAfter Update:\n${{ env.after }}'
           base: main
           branch: update-npm-dependencies
           
