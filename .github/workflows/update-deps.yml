@@ -24,11 +24,12 @@ jobs:
         run: make update
 
       - name: Check for changes in package-lock.json
+        id: check-for-changes
         run: |
-          git diff --exit-code package-lock.json || echo "package-lock.json has changed"
-
+          git diff --exit-code package-lock.json
+          
       - name: Create or Update Pull Request
-        if: success() && steps.check-for-changes.outputs.changed == 'true'
+        if: steps.check-for-changes.outcome == 'failure'
         uses: peter-evans/create-pull-request@v3
         with:
           title: 'Update package-lock.json'
