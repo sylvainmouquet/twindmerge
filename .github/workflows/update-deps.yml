@@ -30,4 +30,3 @@ jobs:
           body: 'Automated update of package-lock.json'
           base: main
           branch: update-npm-dependencies
-          update: 'true'
