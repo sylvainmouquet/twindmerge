@@ -41,7 +41,7 @@ teste2e-prepare:
 	lsof -ti :5173 | xargs kill -9 || true
 	rm -rf my-project
 	npm create vite@latest my-project -- --template react
-	cd my-project && npm install -D tailwindcss postcss autoprefixer
+	cd my-project && npm install -D tailwindcss@3 postcss autoprefixer
 	cd my-project && npx tailwindcss init -p
 	echo "/** @type {import('tailwindcss').Config} */" > my-project/tailwind.config.js
 	echo "export default {" >> my-project/tailwind.config.js
