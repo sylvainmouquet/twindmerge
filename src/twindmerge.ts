@@ -30,7 +30,7 @@ export function merge(...classNames: (string | string[])[]): string {
   const groupKeys = ["m", "ml", "mr", "mt", "mb", "p", "pl", "pr", "pt", "pb"];
   const resetKeys = ["m", "p"];
 
-  classNamesString.split(" ").forEach((word) => {
+  classNamesString.split(" ").forEach((word:string) => {
     const [key, value] = getKeyAndValue(word);
 
     if (resetKeys.includes(key)) {
@@ -44,3 +44,5 @@ export function merge(...classNames: (string | string[])[]): string {
     .map((value) => value.replace("color:", ""))
     .join(" ");
 }
+
+export default merge;

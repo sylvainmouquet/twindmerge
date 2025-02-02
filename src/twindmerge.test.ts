@@ -1,6 +1,6 @@
-import {merge, charIsNumeric} from "./twindmerge";
 import {clsx} from "clsx";
 import { expect, test } from 'vitest';
+import merge, {charIsNumeric} from "./twindmerge";
 
 test("check if input is a numeric", () => {
     expect(charIsNumeric("0")).toBe(true);
