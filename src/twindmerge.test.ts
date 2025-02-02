@@ -20,7 +20,12 @@ test("check if input is a numeric", () => {
 })
 
 test("merge the tailwind classes", () => {
+    // bug #31
+    expect(merge("border-2 border-dashed")).toBe("border-2 border-dashed");
+    expect(merge("border-dashed border-2")).toBe("border-dashed border-2");
+
     // readme tests
+
     expect(merge("text-gray-100 text-gray-50")).toBe("text-gray-50");
     expect(merge(clsx("text-gray-100", "text-gray-50"))).toBe("text-gray-50");
     expect(merge('bg-blue-500', 'bg-red-500')).toBe("bg-red-500");
@@ -89,4 +94,5 @@ test("merge the tailwind classes", () => {
   ).toBe(
     "bg-blue-500 hover:bg-blue-500 text-gray-50 dark:text-gray-400 dark:bg-blue-500 dark:hover:bg-blue-500 rounded-e dark:text-white text-xs",
   );
+
 });

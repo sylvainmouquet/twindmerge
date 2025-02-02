@@ -34,10 +34,15 @@ export function merge(...classNames: (string | string[])[]): string {
     const [key, value] = getKeyAndValue(word);
 
     if (resetKeys.includes(key)) {
-      groupKeys.forEach((k) => delete result[k]);
+      groupKeys.forEach((k) => delete result[k] && delete result[k + '-number']);
     }
 
-    result[key] = value;
+    const splitted = word.split("-");
+    if (splitted.length > 1 && !isNaN(Number(splitted[1]))) {
+      result[key + '-number'] = value;
+    } else {
+      result[key] = value;
+    }
   });
 
   return Object.values(result)
