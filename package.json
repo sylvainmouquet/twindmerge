@@ -1,6 +1,6 @@
 {
   "name": "twindmerge",
-  "version": "1.0.0",
+  "version": "1.2.3",
   "description": "Merge the list of tailwind classes",
   "author": "Sylvain Mouquet <sylvain.mouquet@gmail.com>",
   "homepage": "https://github.com/sylvainmouquet/twindmerge",
@@ -23,18 +23,35 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "deploy": "npm publish",
+    "build": "rm -rf dist/* && tsc -p tsconfig.commonjs.json && tsc -p tsconfig.esm.json && mv dist/twindmerge.js dist/twindmerge.mjs",
+    "deploy": "npm publish --registry https://registry.idum.cloud/npm/",
     "test": "vitest run",
     "lint": "eslint . --ext .ts"
   },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "module": "dist/twindmerge.mjs",
+  "main": "dist/twindmerge.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./index.d.mts",
+        "default": "./dist/twindmerge.mjs"
+      },
+      "default": {
+        "types": "./index.d.ts",
+        "default": "./dist/twindmerge.js"
+      }
+    }
+  },
   "files": [
-    "/dist"
+    "*.d.mts",
+    "*.d.ts",
+    "dist"
   ],
   "dependencies": {
-    "clsx": "^2.1.1"
+    "@tailwindcss/postcss": "^4.0.3",
+    "clsx": "^2.1.1",
+    "terser": "^5.37.0"
   },
   "devDependencies": {
     "@testing-library/react": "^16.0.1",
@@ -45,8 +62,8 @@
     "cypress": "^13.14.2",
     "eslint": "^8.0.0",
     "happy-dom": "^15.7.4",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.13",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.17",
     "typescript": "^5.5.4",
     "vitest": "^2.1.1"
   }
