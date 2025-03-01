@@ -27,14 +27,18 @@ export function merge(...classNames: (string | string[])[]): string {
     : classNames;
   const result: { [key: string]: string } = {};
 
-  const groupKeys = ["m", "ml", "mr", "mt", "mb", "p", "pl", "pr", "pt", "pb", "px", "py"];
-  const resetKeys = ["m", "p"];
+  const groupKeysM = ["m", "ml", "mr", "mt", "mb", "mx", "my"];
+  const groupKeysP = [ "p", "pl", "pr", "pt", "pb", "px", "py"]
 
   classNamesString.split(" ").forEach((word:string) => {
     const [key, value] = getKeyAndValue(word);
 
-    if (resetKeys.includes(key)) {
-      groupKeys.forEach((k) => delete result[k] && delete result[k + '-number']);
+    if (key == 'p') {
+      groupKeysP.forEach((k) => delete result[k] && delete result[k + '-number']);
+    }
+
+    if (key == 'm') {
+      groupKeysM.forEach((k) => delete result[k] && delete result[k + '-number']);
     }
 
     const splitted = word.split("-");

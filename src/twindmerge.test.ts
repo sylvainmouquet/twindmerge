@@ -20,6 +20,9 @@ test("check if input is a numeric", () => {
 })
 
 test("merge the tailwind classes", () => {
+
+    expect(merge("p-10 m-10")).toBe("p-10 m-10");
+
     // bug #35
     expect(merge("px-2 py-3 p-10")).toBe("p-10");
 
