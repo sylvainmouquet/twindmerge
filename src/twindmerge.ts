@@ -27,7 +27,7 @@ export function merge(...classNames: (string | string[])[]): string {
     : classNames;
   const result: { [key: string]: string } = {};
 
-  const groupKeys = ["m", "ml", "mr", "mt", "mb", "p", "pl", "pr", "pt", "pb"];
+  const groupKeys = ["m", "ml", "mr", "mt", "mb", "p", "pl", "pr", "pt", "pb", "px", "py"];
   const resetKeys = ["m", "p"];
 
   classNamesString.split(" ").forEach((word:string) => {

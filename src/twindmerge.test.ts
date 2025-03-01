@@ -20,6 +20,9 @@ test("check if input is a numeric", () => {
 })
 
 test("merge the tailwind classes", () => {
+    // bug #35
+    expect(merge("px-2 py-3 p-10")).toBe("p-10");
+
     // bug #31
     expect(merge("border-2 border-dashed")).toBe("border-2 border-dashed");
     expect(merge("border-dashed border-2")).toBe("border-dashed border-2");
